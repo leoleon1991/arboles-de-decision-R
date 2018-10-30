@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "#ARBOLES DE DECISION\n\n#PAQUETES NECESARIOS\nlibrary(tidyverse)\nlibrary(rpart)\nlibrary(rpart.plot)\nlibrary(caret)\n\n#Descargar archivos de datos\ndownload.file(\"https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data\", \"wine.data\")\n\n#Descargar archivo de informacion de la data\ndownload.file(\"https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.names\", \"wine.names\")\n\n#Leer archivo linea por linea (Primeras 10 lineas)\nreadLines(\"wine.data\", n = 10)\n\n#Cargar data\nvino <- read.table(\"wine.data\", sep = \",\", header = FALSE)\n\n#Vizualizar datos \nView(vino)\n\n#Archivo de informacion de la data\nreadLines(\"wine.names\", n = 10)\n\n#Crear copia\nfile.copy(from = \"wine.names\", to = \"wines_names.txt\")\n\n#Leer archivo copia\nfile.show(\"wines_names.txt\")\n\n#Resumen estadistico de la data\nsummary(vino)\n",
+    "contents" : "#ARBOLES DE DECISION\n\n#PAQUETES NECESARIOS\nlibrary(tidyverse)\nlibrary(rpart)\nlibrary(rpart.plot)\nlibrary(caret)\n\n#Descargar archivos de datos\ndownload.file(\"https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data\", \"wine.data\")\n\n#Descargar archivo de informacion de la data\ndownload.file(\"https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.names\", \"wine.names\")\n\n#Leer archivo linea por linea (Primeras 10 lineas)\nreadLines(\"wine.data\", n = 10)\n\n#Cargar data\nvino <- read.table(\"wine.data\", sep = \",\", header = FALSE)\nattach(vino)\n\n#Vizualizar datos \nView(vino)\n\n#Archivo de informacion de la data\nreadLines(\"wine.names\", n = 10)\n\n#Crear copia\nfile.copy(from = \"wine.names\", to = \"wines_names.txt\")\n\n#Leer archivo copia\nfile.show(\"wines_names.txt\")\n\n#Resumen estadistico de la data\nsummary(vino)\n\n#Renombrar cada columna de la data\nnombres <- readLines(\"wines_names.txt\")[58:70] %>% \n  gsub(\"[[:cntrl:]].*\\\\)\", \"\", .) %>% \n  trimws() %>% \n  tolower() %>% \n  gsub(\" |/\", \"_\", .) %>% \n  # Agregamos el nombre \"tipo\", para nuestra primera columna con los tipos de vino\n  c(\"tipo\", .)    \n  \n# Cambiar nombre de los datos\nnames(vino) <- nombres\n\n#Cambiar tipo de dato de la columna 'tipo' a factor\nvino <- vino %>%\n  mutate_at(\"tipo\", factor)\n\n#Crear un sets de entrenamiento y prueba\n#Se necesita un set de entrenamiento para generar un modelo predictivo, y un set de \n#prueba, para comprobar la eficacia de este modelo para hacer predicciones correctas.\n\n#Hacer el ejemplo reproducible\nset.seed(1649)\n\n#Subconjunto de datos de 70%\nvino_entrenamiento <- sample_frac(vino, .7)\nView(vino_entrenamiento)\n\n#Subconjunto de datos complementarios para set de pruebas 30% restante\nvino_prueba <- setdiff(vino, vino_entrenamiento)\nView(vino_prueba)\n\n# Entrenar modelo: clasificar variable \"tipo\" con el resto de variables predictoras\narbol_1 <- rpart(formula = tipo ~ ., data = vino_entrenamiento)\n\n# Evaluar el modelo\narbol_1\n\n# Graficar el arbol\nrpart.plot(arbol_1)\n",
     "created" : 1540863480638.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "3055855011",
+    "hash" : "4051878937",
     "id" : "D058F3F0",
-    "lastKnownWriteTime" : 1540868042,
-    "last_content_update" : 1540868042700,
+    "lastKnownWriteTime" : 1540870843,
+    "last_content_update" : 1540870843220,
     "path" : "~/Scripts_R/Machine Learning/Arboles de Decision/arbol_vino.R",
     "project_path" : "arbol_vino.R",
     "properties" : {

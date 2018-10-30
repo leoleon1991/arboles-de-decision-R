@@ -12,15 +12,15 @@
     "path" : null,
     "project_path" : null,
     "properties" : {
-        "cacheKey" : "C973F3C1",
+        "cacheKey" : "48408CCD",
         "caption" : "vino",
-        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=vino&cache_key=C973F3C1",
-        "displayedObservations" : 178,
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=vino&cache_key=48408CCD",
+        "displayedObservations" : "178",
         "environment" : "",
         "object" : "vino",
-        "preview" : 0,
-        "totalObservations" : 178,
-        "variables" : 14
+        "preview" : "0",
+        "totalObservations" : "178",
+        "variables" : "14"
     },
     "relative_order" : 2,
     "source_on_save" : false,
