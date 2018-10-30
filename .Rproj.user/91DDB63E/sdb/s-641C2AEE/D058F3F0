@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#ARBOLES DE DECISION\n\n#PAQUETES NECESARIOS\nlibrary(tidyverse)\nlibrary(rpart)\nlibrary(rpart.plot)\nlibrary(caret)\n\n#Descargar archivos de datos\ndownload.file(\"https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data\", \"wine.data\")\n\n#Descargar archivo de informacion de la data\ndownload.file(\"https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.names\", \"wine.names\")\n\n#Leer archivo linea por linea (Primeras 10 lineas)\nreadLines(\"wine.data\", n = 10)\n\n#Cargar data\nvino <- read.table(\"wine.data\", sep = \",\", header = FALSE)\n\n#Vizualizar datos \nView(vino)\n\n#Archivo de informacion de la data\nreadLines(\"wine.names\", n = 10)\n\n#Crear copia\nfile.copy(from = \"wine.names\", to = \"wines_names.txt\")\n\n#Leer archivo copia\nfile.show(\"wines_names.txt\")\n\n#Resumen estadistico de la data\nsummary(vino)\n",
+    "created" : 1540863480638.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3055855011",
+    "id" : "D058F3F0",
+    "lastKnownWriteTime" : 1540868042,
+    "last_content_update" : 1540868042700,
+    "path" : "~/Scripts_R/Machine Learning/Arboles de Decision/arbol_vino.R",
+    "project_path" : "arbol_vino.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
