@@ -45,6 +45,7 @@ nombres <- readLines("wines_names.txt")[58:70] %>%
   
 # Cambiar nombre de los datos
 names(vino) <- nombres
+View(vino)
 
 #Cambiar tipo de dato de la columna 'tipo' a factor
 vino <- vino %>%
@@ -73,3 +74,21 @@ arbol_1
 
 # Graficar el arbol
 rpart.plot(arbol_1)
+
+#Predicciones del modelo
+prediccion_1 <- predict(arbol_1, newdata = vino_prueba, type = "class")
+
+#Cruzar prediccion con datos reales - Matriz de confusion
+confusionMatrix(prediccion_1, vino_prueba[["tipo"]])
+
+#Generar un segundo árbol, usando sets de entrenamiento y prueba diferentes.
+set.seed(7439)
+vino_entrenamiento_2 <- sample_frac(vino, .7)
+vino_prueba_2 <- setdiff(vino, vino_entrenamiento)
+arbol_2 <- rpart(formula = tipo ~ ., data = vino_entrenamiento_2)
+prediccion_2 <- predict(object = arbol_2, newdata = vino_prueba_2, type = "class")
+rpart.plot(arbol_2)
+
+View(vino_entrenamiento_2)
+View(vino_prueba)
+View(vino_prueba_2)
